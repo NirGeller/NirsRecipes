@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
+import ServletHelpers.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class LogIn extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             //get paramaters
             String email = request.getParameter("email");    
-            String pwd = request.getParameter("pwd");
+            String pwd = password.crypt(request.getParameter("pwd"));
             String rememberMe = request.getParameter("rememberMe");
             boolean setLifeSpan = true;
             if(rememberMe == null)
@@ -48,10 +48,12 @@ public class LogIn extends HttpServlet {
             
             try{
                 //connect to database
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cookingsite",
-                        "Cook", "cookingiseasy");
-
+                Connection con = connectToDatabase.createConnection();
+                if(con == null)
+                {
+                    out.println("error: database down");
+                    return;
+                }
                 
                 
                 //try to login
@@ -73,7 +75,7 @@ public class LogIn extends HttpServlet {
                     out.print("error: wrong email password combination");   
                 
                 
-            } catch(SQLException e){out.print("error: " + e.getLocalizedMessage());} catch(ClassNotFoundException e){out.println("error: " + e.toString());}
+            } catch(SQLException e){out.print("error: " + e.getLocalizedMessage());}
            
         }
     }

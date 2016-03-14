@@ -43,7 +43,7 @@ public class SavedUser extends HttpServlet {
                         return;
                     }
                 }
-                out.print("0");
+                out.print("no user");
                 
         }
     }

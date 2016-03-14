@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import ServletHelpers.connectToDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -41,9 +42,12 @@ public class imageExists extends HttpServlet {
             try{
                 
                 //connect to database
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cookingsite",
-                        "Cook", "cookingiseasy");
+                Connection con = connectToDatabase.createConnection();
+                if(con == null)
+                {
+                    out.println("error: database down");
+                    return;
+                }
 
                 //try to login
                 PreparedStatement stmt = con.prepareStatement("select * from gallery where src=?");
@@ -53,7 +57,7 @@ public class imageExists extends HttpServlet {
                     out.println("error: image already exists");
                 else
                     out.println("all good");
-            } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());} catch(ClassNotFoundException e){out.println(e.toString());}
+            } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());} 
         }
     }
 

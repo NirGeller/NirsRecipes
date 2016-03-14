@@ -6,16 +6,15 @@
 ////PreLoad JS
 //=============================================
 //=============================================
+generateGallery();
 
-$(document).ready(function(){
-    generateGallery();
-    
         
-});
 
 ////AJAX
 //=============================================
 //=============================================
+
+
 
 function generateGallery()
 {
@@ -33,8 +32,8 @@ function generateGallery()
            {
                //photo data is [PhotoId, Photo-src,Photo Title]
                var photoData = photoDatas[i].split(',');
-               
-               var html = "<li><a href='#' class='pop' ><img class='thumbNail' id='image" + photoData[0] + "' src='" + photoData[1] + "' alt='" + photoData[2] + "' /></a></li>";
+               var paramaters ='"' + photoData[0] + '","' + photoData[1] + '","' + photoData[2] + '"';
+               var html = "<li id='image" + photoData[0] + "'><img class='pop' src='" + photoData[1] + "' alt='" + photoData[2] + "' onclick='popImageModal(" + paramaters + ")' /></li>";
                var $image = $(html);
                $(".gallery").append($image);
            }
@@ -78,7 +77,7 @@ function deleteImage(id, src)
             $("#imagemodal").modal('hide');
             //hide the deleted image till the page is refreshed
             if(deleted)
-                $("#"+id).css("display","none");
+                $("#image"+id).css("display","none");
             
         },
         error: function (var1, error)
@@ -92,17 +91,12 @@ function deleteImage(id, src)
 //==============================================
 
 //gallery pop up event
-$( ".gallery" ).on( 'click', '.pop', function() {
-    
-    //get the src and the alt properties from the img
-   var src= $(this).html().split("src=")[1].split('"')[1];
-   var title= $(this).html().split("alt=")[1].split('"')[1];
-   var id= $(this).html().split("id=")[1].split('"')[1];
+function popImageModal(id, src, title){
    $("#myModalLabel").html(title); //assign the lable of the photo
    $('#imagepreview').attr('src', src); // here asign the image to the modal when the user click the enlarge link
    $("#imagepreview").attr('class', id);
    $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
-});
+};
 
 //delete photo via AJAX
 $("#deleteImage").click(function(){

@@ -5,9 +5,9 @@
  */
 
 
+import ServletHelpers.*;
 import java.io.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,15 +35,12 @@ public class uploadFile extends HttpServlet {
             // gets absolute path of the web application
             String path = getServletContext().getRealPath("Images/Gallery");
             String pathBuild = path;
-            path=setServerFilePath(path);
+            path= pathModifier.setServerFilePath(path);
             
             // Create path components to save the file
             final Part filePart = request.getPart("file");
             final Part filePartBuild = request.getPart("file");
-            final String fileName = getFileName(filePart);
-            
-            
-            
+            final String fileName = pathModifier.getFileName(filePart);
             
             OutputStream out = null;
             OutputStream outBuild = null;
@@ -80,14 +77,17 @@ public class uploadFile extends HttpServlet {
                         new Object[]{fileName, pathBuild});
                 
                 //add to database the new src and title
-                String src = generateSrc(path) + fileName;
+                String src = pathModifier.generateSrc(path) + fileName;
                 writer.println(src);
                 String title = request.getParameter("fileTitle");
                 try{
                     //connect to database
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cookingsite",
-                            "Cook", "cookingiseasy");
+                Connection con = connectToDatabase.createConnection();
+                if(con == null)
+                {
+                    writer.println("error: database down");
+                    return;
+                }
                     
                     //insert into database
                     PreparedStatement stmt = con.prepareStatement("insert into gallery(src, title) values (?,?)");
@@ -95,7 +95,7 @@ public class uploadFile extends HttpServlet {
                     stmt.setString(2, title);
                     stmt.executeUpdate();
                     
-                 } catch(SQLException e){writer.print("sql error");} catch(ClassNotFoundException e){writer.println(e.toString());}
+                 } catch(SQLException e){writer.print("sql error");} 
                 try{Thread.sleep(3000);} catch(Exception e){}
                 response.sendRedirect(request.getHeader("referer"));
                 if (out != null) {
@@ -123,37 +123,11 @@ public class uploadFile extends HttpServlet {
         
         }
     
-    private String generateSrc(String path)
-    {
-        String temp = path.split("web\\\\")[1];
-        String[] dirs = temp.split("\\\\");
-        temp = "";
-        for(String dir : dirs)
-        {
-            temp += dir + "/";
-        }
-        return temp;
-    }
     
-    private String getFileName(final Part part) {
-        final String partHeader = part.getHeader("content-disposition");
-        LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
-        for (String content : part.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(
-                        content.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-    return null;
-    }
+    
+    
 
-    protected String setServerFilePath(String path)
-    {
-        //set path to server side path
-        String[] temp = path.split("build\\\\web");
-        path = temp[0] + "web" + temp[1];
-        return path;
-    }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

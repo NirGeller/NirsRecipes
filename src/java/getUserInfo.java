@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import ServletHelpers.connectToDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -40,9 +41,12 @@ public class getUserInfo extends HttpServlet {
             
             try{
                 //connect to database
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cookingsite",
-                        "Cook", "cookingiseasy");
+                Connection con = connectToDatabase.createConnection();
+                if(con == null)
+                {
+                    out.println("error: database down");
+                    return;
+                }
 
                 
                 
@@ -57,8 +61,7 @@ public class getUserInfo extends HttpServlet {
                 } 
                 
                 
-            } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());} catch(ClassNotFoundException e){out.println(e.toString());}
-           
+            } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());}
         }
     }
 

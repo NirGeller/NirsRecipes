@@ -14,22 +14,11 @@ fixPadding(".galleryContainer");
 //wait for the document to load and then check user
 $(document).ready(function(){
     updateUserName();
-    if (username != 0)
+    if (username != "no user")
         updateNavBar(username);
         
 });
 
-function checkAdmin()
-{
-    if(!username.contains("geller.nir@gmail.com") || username.length !== 22)
-    {
-        $(".adminContent").css("display","none");
-    }
-    else
-    {
-        $(".adminContent").css("display","block");
-    }
-}
 //=============================================
 //=============================================
 //END PreLoad JS
@@ -57,6 +46,29 @@ function updateUserName()
             return false;
         }
     });
+}
+
+//returns true if email is admins email
+function checkAdmin()
+{
+    $.ajax({
+        type:"post",
+        url:"checkAdmin",
+        data:{"email":username.split('\n')[0]},
+        success: function(data)
+        {
+            if(data == "1")
+                $(".adminContent").css("display","block");
+            else
+                $(".adminContent").css("display","none");
+        },
+        error: function(var1,error)
+        {
+            alert(error);
+        }
+    });
+        
+        
 }
 
 //submit the login form using ajax

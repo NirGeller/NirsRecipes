@@ -28,6 +28,10 @@
         <servlet-name>uploadFile</servlet-name>
         <servlet-class>uploadFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>checkAdmin</servlet-name>
+        <servlet-class>checkAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Registration</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>uploadFile</servlet-name>
         <url-pattern>/uploadFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkAdmin</servlet-name>
+        <url-pattern>/checkAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

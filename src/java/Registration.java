@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import javax.servlet.http.*;
+import ServletHelpers.*;
 /**
  *
  * @author gelle
@@ -32,7 +33,7 @@ public class Registration extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String email = request.getParameter("email");    
-            String pwd = request.getParameter("pwd");
+            String pwd = password.crypt(request.getParameter("pwd"));
             String name = request.getParameter("name");
             String lastName = request.getParameter("lastName");
             String rememberMe = request.getParameter("rememberMe");
@@ -42,11 +43,12 @@ public class Registration extends HttpServlet {
             
             try{
                 //connect to database
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cookingsite",
-                        "Cook", "cookingiseasy");
-
-                
+                Connection con = connectToDatabase.createConnection();
+                if(con == null)
+                {
+                    out.println("error: database down");
+                    return;
+                }
                 
                 //checking for multipels
                 PreparedStatement stmt = con.prepareStatement("select * from members where email= ?");
@@ -80,7 +82,7 @@ public class Registration extends HttpServlet {
                 {
                     out.print("error: couldnt sign up, sql error");
                 }
-            } catch(SQLException e){out.print("sql error");} catch(ClassNotFoundException e){out.println("error: " + e.toString());}
+            } catch(SQLException e){out.print("sql error");} 
            
         }
     }

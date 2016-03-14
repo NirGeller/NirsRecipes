@@ -20,6 +20,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/gallery.css" rel="stylesheet">
         <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
   </head>
     <body>
@@ -43,9 +44,9 @@
                         <div id="mainNavBar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="index.jsp"> Home </a></li>
-                                <li class="active"><a href="#">Gallery</a></li>
+                                <li class="active"><a href="Gallery.jsp">Gallery</a></li>
                                 <li><a href="#">Recipes</a></li>
-                                <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"> Contact Us </a></li>
+                                <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"  onClick="return false;"> Contact Us </a></li>
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -297,6 +298,16 @@
                 <div id="galleryHeader">
                     <h2 id="galleryTitle"> The Gallery </h2>
                 </div>
+                
+                <div id="galleryBody">
+                    <ul class="gallery">
+
+                    </ul><!--end thumbnails -->
+                    <br>
+                    <hr>
+                    
+                </div>
+                
                 <div id="galleryAdmin" class="adminContent">
                         <h2>
                             hey Admin whats up? <br>
@@ -304,16 +315,12 @@
                         </h2>
                         <button class="btn btn-info" id="addPhoto">Add Photo </button>
                 </div>
-                <div id="galleryBody">
-                    <ul class="gallery ">
-
-                    </ul><!--end thumbnails -->
-                    <br>
-                    <hr>
-                    
-                </div>
-
-            </div>
+                
+                <!-- FOOTER -->
+                <footer>
+                  <p class="pull-right"><a href="#">Back to top</a></p>
+                  <p>&copy; Nir Geller. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                </footer>
 
             <!-- image previewing -->
             <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -374,6 +381,8 @@
               </div>
             </div>
             
+
+        </div><!-- /.site content -->
             
         </div>
         
