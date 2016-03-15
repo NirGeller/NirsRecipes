@@ -334,7 +334,7 @@
                     
                 </div>
                 
-                <!-- image previewing -->
+                <!-- recipe previewing -->
                 <div class="modal fade" id="recipemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -400,34 +400,45 @@
                         </div>
                         <div class="modal-body center " id="recipeDataContainer">
                             <form id="recipeData">
+                                <!-- recipes image -->
                                 <div class="col-sm-4 allingLeft" >
                                 <label class="control-label" for="name">Select recipes image </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="file" id="file" name="file"/>
+                                    <input  type="file" id="file" name="file"/>
                                 </div> 
 
                                 </br>
                                 </br>
-
+                                
+                                <!-- recipes title -->
                                 <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="name"> files title: </label>
+                                    <label class="control-label" for="name"> recipes title </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft" >
-                                    <input type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
+                                    <input class="form-control" type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
                                 </div> 
                                 
                                 </br>
                                 </br>
                                 
+                                <!-- recipes description -->
                                 <div class="col-sm-4 allingLeft" >
                                     <label class="control-label" for="name">Description </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft" >
-                                    <input type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
+                                    <input class="form-control" type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
                                 </div> 
-
-                                <input type="hidden" name="Dir" value="Gallery"/>
+                                
+                                <!-- estamated time -->
+                                <div class="col-sm-4 allingLeft" >
+                                    <label class="control-label" for="name">estemated cooking time </label>
+                                </div>
+                                <div class="col-sm-7 allingLeft" >
+                                    <input class="form-control" type="time" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
+                                </div> 
+                                
+                                <input type="hidden" name="Dir" value="Recipes"/>
                             </form>
                         </div>
                         <div class="modal-footer" id="previewFooter">
