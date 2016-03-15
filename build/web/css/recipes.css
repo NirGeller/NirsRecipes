@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 14, 2016, 10:20:31 PM
+    Author     : gelle
+*/
+
+/* User Content
+------------------------------------- */
+#galleryUser{
+    margin-bottom: 10%;
+}
+
+#addRecipePop{
+    float:right;
+}
+
+/*recipeModal
+------------------------------------- */
+#recipeTitle{
+    color:#23527c;
+    font-style:italic;
+    font-weight: bolder;
+}
+
+#recipeImageContainer img{
+    width:90%;
+    height:90%;
+}
+
+.recipeHeaders h3{
+    text-align: left;
+    font-weight: bold;
+    color: #398439;
+}
+
+.recipeText{
+    font-size:larger;
+    font-weight: bold;
+    text-align: left;
+}
+
+/*Add recipeModal
+-------------------------------------- */
+#addRecipeTitle{
+    color:#843534;
+    font-style:italic;
+    font-weight: bolder;
+}
+
+#recipeDataContainer{
+    min-height: 300px;
+}

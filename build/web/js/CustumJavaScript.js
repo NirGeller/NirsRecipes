@@ -10,14 +10,24 @@ var admin;
 
 //fix the caurasel padding around the navbar
 fixPadding("#siteContent");
-fixPadding(".galleryContainer");
 //wait for the document to load and then check user
 $(document).ready(function(){
-    updateUserName();
-    if (username != "no user")
-        updateNavBar(username);
+    updateLogin();
         
 });
+
+function updateLogin()
+{
+    updateUserName();
+    if (username != "no user")
+    {
+        updateNavBar(username);
+        $(".userId").html(getUserInfo()[1]);
+        $(".userContent").css("display","block");
+    }
+    else
+        $(".userContent").css("display","none");
+}
 
 //=============================================
 //=============================================
@@ -102,7 +112,7 @@ function AJAXLogin(e)
                 }
                 else
                 {
-                    updateUserName();
+                    updateLogin();
                     updateNavBar(data);
                     $("#LoginModal").modal('hide');
                 }
@@ -203,32 +213,73 @@ function AJAXContact(e){
     });
 }
 
-//autofill contact form
+////autofill contact form
+//function autoFillContact()
+//{
+//    alert("hey");
+//    //check if logged in
+//    if(username == 0)
+//        return;
+//    else
+//    {
+//        $.ajax({
+//            method:"post",
+//            url:"getUserInfo",
+//            data:{mail:username},
+//            success: function(data){
+//                var info = data.split(",");
+//                $("#contactEmail").val(username);
+//                $("#contactName").val(info[0]);
+//                $("#contactLastName").val(info[1]);
+//            },
+//            error: function(var1, error)
+//            {
+//                alert(error);
+//            }
+//
+//        });
+//    }
+//}
+
 function autoFillContact()
 {
     //check if logged in
-    if(username == 0)
-        return;
-    else
-    {
-        $.ajax({
+    var info = getUserInfo();
+    $("#contactEmail").val(info[0]);
+    $("#contactName").val(info[1]);
+    $("#contactLastName").val(info[2]);
+            
+}
+
+// returns [email, name, lastname]
+function getUserInfo()
+{
+    
+    if(username == "no user")
+        return ["no user", "", ""];
+    var output; 
+    $.ajax({
+            async: false,
             method:"post",
             url:"getUserInfo",
             data:{mail:username},
+            //data is [name, lastname]
             success: function(data){
+                
                 var info = data.split(",");
-                $("#contactEmail").val(username);
-                $("#contactName").val(info[0]);
-                $("#contactLastName").val(info[1]);
+                output = [username, info[0], info[1]];
+                
             },
             error: function(var1, error)
             {
                 alert(error);
             }
 
-        });
-    }
+    });
+    return output;
 }
+
+
 
 
 //============================================

@@ -20,6 +20,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/grid.css" rel="stylesheet">
         <link href="css/gallery.css" rel="stylesheet">
         <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
   </head>
@@ -45,13 +46,13 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="index.jsp"> Home </a></li>
                                 <li class="active"><a href="Gallery.jsp">Gallery</a></li>
-                                <li><a href="#">Recipes</a></li>
+                                <li><a href="Recipes.jsp">Recipes</a></li>
                                 <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"  onClick="return false;"> Contact Us </a></li>
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#'> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
-                                <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#' ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#' onClick="return false;"> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+                                <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,6 +61,7 @@
 
             </div>
         </div>
+        
         <div id="siteContent">
             <!-- alerts go here -->
             <div id="mainAlerts">
@@ -67,7 +69,6 @@
             </div>
             <!-- Sign Up modal
             ====================================== !-->
-
             <div id="signUpModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -222,7 +223,6 @@
 
             <!-- Contact modal
             ====================================== !-->
-
             <div id="contactModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -293,15 +293,24 @@
                 </div>
             </div>
 
-            <!-- Gallery -->
-            <div class="container galleryContainer">
-                <div id="galleryHeader">
-                    <h2 id="galleryTitle"> The Gallery </h2>
+            <!-- Gallery
+            ====================================== !-->
+            <div class="container gridContainer">
+                <div class="gridHeader">
+                    <h2 class="gridTitle"> The Gallery </h2>
+                    
+                    <div class="input-group stylish-input-group" id="searchField">
+                        <input type="text" class="form-control"  placeholder="Search" >
+                        <span class="input-group-addon">
+                            <button type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>  
+                        </span>
+                    </div>
                 </div>
-                
-                <div id="galleryBody">
-                    <ul class="gallery">
-
+                <hr>
+                <div class="gridBody">
+                    <ul class="grid" id="photoGallery">
                     </ul><!--end thumbnails -->
                     <br>
                     <hr>
@@ -309,7 +318,7 @@
                 </div>
                 
                 <div id="galleryAdmin" class="adminContent">
-                        <h2>
+                        <h2 id="galleryTitle">
                             hey Admin whats up? <br>
                             you got the button over here if you want to add some photos
                         </h2>
@@ -360,39 +369,38 @@
 
                         </br>
                         </br>
+                        
                         <div class="col-sm-4" >
                             <label class="control-label" for="name">Select file's title </label>
                         </div>
-                        <div class="col-sm-5">
+                        
+                        <div class="col-sm-7 allingLeft">
                             <input type="text" id="fileTitle" name="fileTitle"/>
-                        </div>   
+                        </div> 
+                          
+                        <input type="hidden" name="Dir" value="Gallery"/>
 
-
-                          <br/>
-                          <br/>
-                          <br/>
-                          <div id="noUpload">
-                          </div>
-                          <input type="submit" value="Upload" />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div id="noUpload">
+                        </div>
+                        <input type="submit" value="Upload" />
                       </form>
                   </div>
 
                 </div>
               </div>
             </div>
-            
-
-        </div><!-- /.site content -->
-            
         </div>
-        
-        <!-- scripts -->
-        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.prettyPhoto.js"></script>
-        <script src="js/CustumJavaScript.js"></script>
-        <script src="js/galleryJS.js"></script>
+    </div><!-- /.site content -->
+    <!-- scripts -->
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/CustumJavaScript.js"></script>
+    <script src="js/galleryJS.js"></script>
         
         
     </body>

@@ -33,7 +33,8 @@ public class uploadFile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter writer = response.getWriter()) {
             // gets absolute path of the web application
-            String path = getServletContext().getRealPath("Images/Gallery");
+            String Dir = request.getParameter("Dir");
+            String path = getServletContext().getRealPath("Images/" + Dir);
             String pathBuild = path;
             path= pathModifier.setServerFilePath(path);
             
@@ -42,43 +43,17 @@ public class uploadFile extends HttpServlet {
             final Part filePartBuild = request.getPart("file");
             final String fileName = pathModifier.getFileName(filePart);
             
-            OutputStream out = null;
-            OutputStream outBuild = null;
-            InputStream filecontent = null;
-            InputStream filecontentBuild = null;
             try {
-                out = new FileOutputStream(new File(path + File.separator
-                        + fileName));
-                filecontent = filePart.getInputStream();
-
-                int read = 0;
-                final byte[] bytes = new byte[1024*1024*10];
-
-                while ((read = filecontent.read(bytes)) != -1) {
-                    out.write(bytes, 0, read);
+                if(ServletHelpers.fileHandler.insertFile(filePart, filePartBuild, fileName, path, pathBuild))
+                    writer.println("file was successfully inserted :)");
+                else
+                {
+                    writer.println("error: couldn' upload file");
+                    response.sendRedirect(request.getHeader("referer"));
+                
                 }
-                writer.println("New file " + fileName + " created at " + path);
-                LOGGER.log(Level.INFO, "File{0}being uploaded to {1}", 
-                        new Object[]{fileName, path});
-                
-                
-                outBuild = new FileOutputStream(new File(pathBuild + File.separator
-                        + fileName));
-                filecontentBuild = filePartBuild.getInputStream();
-
-                int readBuild = 0;
-                final byte[] bytesBuild = new byte[1024*1024*10];
-
-                while ((readBuild = filecontentBuild.read(bytesBuild)) != -1) {
-                    out.write(bytesBuild, 0, readBuild);
-                }
-                writer.println("New file " + fileName + " created at " + pathBuild);
-                LOGGER.log(Level.INFO, "File{0}being uploaded to {1}", 
-                        new Object[]{fileName, pathBuild});
-                
                 //add to database the new src and title
                 String src = pathModifier.generateSrc(path) + fileName;
-                writer.println(src);
                 String title = request.getParameter("fileTitle");
                 try{
                     //connect to database
@@ -89,24 +64,17 @@ public class uploadFile extends HttpServlet {
                     return;
                 }
                     
-                    //insert into database
-                    PreparedStatement stmt = con.prepareStatement("insert into gallery(src, title) values (?,?)");
-                    stmt.setString(1, src);
-                    stmt.setString(2, title);
-                    stmt.executeUpdate();
+                //insert into database
+                PreparedStatement stmt = con.prepareStatement("insert into gallery(src, title) values (?,?)");
+                stmt.setString(1, src);
+                stmt.setString(2, title);
+                stmt.executeUpdate();
                     
-                 } catch(SQLException e){writer.print("sql error");} 
+                } catch(SQLException e){writer.print("sql error");} 
                 try{Thread.sleep(3000);} catch(Exception e){}
+                
+                writer.println("database updated");
                 response.sendRedirect(request.getHeader("referer"));
-                if (out != null) {
-                    out.close();
-                }
-                if (filecontent != null) {
-                    filecontent.close();
-                }
-                if (writer != null) {
-                    writer.close();
-                }
                 
                 
             } catch (FileNotFoundException fne) {

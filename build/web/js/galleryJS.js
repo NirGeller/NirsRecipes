@@ -19,7 +19,7 @@ generateGallery();
 function generateGallery()
 {
     //empty gallery
-    $(".gallery").html("");
+    $(".grid").html("");
     //generate gallery
     $.ajax({
        type: "get",
@@ -35,7 +35,7 @@ function generateGallery()
                var paramaters ='"' + photoData[0] + '","' + photoData[1] + '","' + photoData[2] + '"';
                var html = "<li id='image" + photoData[0] + "'><img class='pop' src='" + photoData[1] + "' alt='" + photoData[2] + "' onclick='popImageModal(" + paramaters + ")' /></li>";
                var $image = $(html);
-               $(".gallery").append($image);
+               $("#photoGallery").append($image);
            }
        },
        error: function(error)
@@ -55,7 +55,7 @@ function deleteImage(id, src)
         success: function(data)
         {
             var deleted = true;
-            if(data.contains("error:") && !data.contains("Build"))
+            if(data.contains("error:"))
             {
                 message = data;
                 var $Msg = $("<div class='alert alert-danger Alert'>" + message +"</div>");

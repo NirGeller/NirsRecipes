@@ -50,27 +50,14 @@ public class deleteImage extends HttpServlet {
                 //delete image
                 PreparedStatement stmt = con.prepareStatement("delete from gallery where src= ?");
                 stmt.setString(1, src);
-                try{
-                    
-                    //Set path to an absolute path; note that the parameter to getRealPath() here should be a context-relative path. get the path to the build directory
-                    String path =getServletContext().getRealPath("/" + src);
-                    File buildFile = new File(path);
-                    
-                    File serverFile = new File(pathModifier.setServerFilePath(path));
-                    if(!buildFile.delete())
-                    {
-                        out.println("error: couldnt delete Build image" + buildFile.getAbsolutePath());
-                        
-                    }
-                    if(!serverFile.delete())
-                        out.println("error: couldnt delete Server image" + serverFile);
-                    else
-                    {
-                        stmt.executeUpdate();
-                        out.println("the image was deleted successfully :)");
-                    }
-                } catch(Exception e){out.println("error: couldn't delete image this is " + e.getMessage());}
-                
+                boolean deleted = ServletHelpers.fileHandler.deleteFile(getServletContext().getRealPath("/" + src));
+                if(!deleted)
+                    out.println("error: couldnt delete Server image" + src);
+                else
+                {
+                    stmt.executeUpdate();
+                    out.println("the image was deleted successfully :)");
+                }
                 
             } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());} 
         }

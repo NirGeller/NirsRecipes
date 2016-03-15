@@ -39,13 +39,13 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="index.jsp"> Home </a></li>
                             <li><a href="Gallery.jsp">Gallery</a></li>
-                            <li><a href="#">Recipes</a></li>
-                            <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"> Contact Us </a></li>
+                            <li><a href="Recipes.jsp">Recipes</a></li>
+                            <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs" onClick="return false;"> Contact Us </a></li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#'> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
-                            <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#' ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#' onClick="return false;"> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+                            <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#' onClick="return false;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -347,19 +347,19 @@
                 </a>
                 <h2>BreakFast</h2>
                 <p>"When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love." <br> <br> well that's cool and all, but we all know that a tasty breakfast counts the most</p>
-                <p><a class="btn btn-default" href="#" role="button">Tasty stuff awaits &raquo;</a></p>
+                <p><a class="btn btn-default" href="Recipes.jsp" role="button">Tasty stuff awaits &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
               <img class="img-circle" src="Images/lunch.jpg" alt="Lunch Icon" width="140" height="140">
               <h2>Lunch It Is</h2>
               <p>"Ask not what can you do for your country, but whats for lunch?" <br> <br> well in our case it more "whats cooking today?"</p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-default" href="Recipes.jsp" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
               <img class="img-circle" src="Images/supper.jpg" alt="Supper Icon" width="140" height="140">
               <h2>Dinner for Last</h2>
               <p>"Eat breakfast like a king, Lunch like a prince and Dinner like a pauper" <br> <br> yeah yeah we know... no eating after 8 O'clock.. well that depends on whats cooking over there </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-default" href="Recipes.jsp" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
           </div><!-- /.row -->
 
