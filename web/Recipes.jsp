@@ -413,10 +413,10 @@
                                 
                                 <!-- recipes title -->
                                 <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="name"> recipes title </label>
+                                    <label class="control-label" for="recipeTitleInput"> recipes title </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
+                                    <input class="form-control" type="text" id="recipeTitleInput" maxlength="45" name="recipeTitleInput" placeholder="i'm a title"/>
                                 </div> 
                                 
                                 </br>
@@ -424,18 +424,21 @@
                                 
                                 <!-- recipes description -->
                                 <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="name">Description </label>
+                                    <label class="control-label" for="recipeDescriptionInput">Description </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="text" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
-                                </div> 
+                                    <input class="form-control" type="text" id="recipeDescriptionInput" maxlength="45" name="recipeDescriptionInput" placeholder="i'm a description"/>
+                                </div>
+                                
+                                </br>
+                                </br>
                                 
                                 <!-- estamated time -->
                                 <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="name">estemated cooking time </label>
+                                    <label class="control-label" for="estematedTimeInput">estemated cooking time </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="time" id="fileTitle" maxlength="45" name="fileTitle" placeholder="i'm a title"/>
+                                    <input class="form-control" type="time" id="estematedTimeInput"  name="estematedTimeInput" placeholder="ETA in Hours:minues"/>
                                 </div> 
                                 
                                 <input type="hidden" name="Dir" value="Recipes"/>

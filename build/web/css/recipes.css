@@ -34,7 +34,8 @@ and open the template in the editor.
 .recipeHeaders h3{
     text-align: left;
     font-weight: bold;
-    color: #398439;
+    /*color: #398439;*/
+    color: forestgreen;
 }
 
 .recipeText{

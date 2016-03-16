@@ -360,11 +360,11 @@
                   <div class="modal-body center ">
                       <form   method="post" action="uploadFile" enctype="multipart/form-data" onsubmit="return checkPhoto()">
 
-                        <div class="col-sm-4" >
+                        <div class="col-sm-4 allingLeft" >
                             <label class="control-label" for="name">Select file to upload </label>
                         </div>
-                        <div class="col-sm-7">
-                            <input type="file" id="file" name="file"/>
+                        <div class="col-sm-7 allingLeft">
+                            <input  type="file" id="file" name="file"/>
                         </div> 
 
                         </br>
@@ -375,7 +375,7 @@
                         </div>
                         
                         <div class="col-sm-7 allingLeft">
-                            <input type="text" id="fileTitle" name="fileTitle"/>
+                            <input class="form-control" type="text" id="fileTitle" name="fileTitle"/>
                         </div> 
                           
                         <input type="hidden" name="Dir" value="Gallery"/>
