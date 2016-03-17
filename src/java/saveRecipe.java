@@ -67,16 +67,7 @@ public class saveRecipe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try (PrintWriter writer = response.getWriter()) {
-            
-            
-            
-            
-            
-            
-            
-        }
-        processRequest(request, response);
+        
     }
 
     /**
@@ -97,6 +88,7 @@ public class saveRecipe extends HttpServlet {
             String description = request.getParameter("description");
             String estimatedTime = request.getParameter("estimatedTime");
             String servings = request.getParameter("servings");
+            String ingredients = request.getParameter("ingredients");
             String Dir = request.getParameter("Dir");
             
             //set step
@@ -137,13 +129,14 @@ public class saveRecipe extends HttpServlet {
                 }
                 
                 //insert into database
-                PreparedStatement stmt = con.prepareStatement("insert into recipes(title, src, description, ETA, servings, steps) values (?,?,?,?,?,?)");
+                PreparedStatement stmt = con.prepareStatement("insert into recipes(title, src, description, ETA, servings, ingredients, steps) values (?,?,?,?,?,?,?)");
                 stmt.setString(1, title);
                 stmt.setString(2, src);
                 stmt.setString(3, description);
                 stmt.setString(4, estimatedTime);
                 stmt.setString(5, servings);
-                stmt.setString(6, steps);
+                stmt.setString(6, ingredients);
+                stmt.setString(7, steps);
                 stmt.executeUpdate();
                     
                 
@@ -152,7 +145,6 @@ public class saveRecipe extends HttpServlet {
                 try{Thread.sleep(3000);} catch(Exception e){}
                 
                 writer.println("database updated");
-                response.sendRedirect(request.getHeader("referer"));
                 
                 
             } catch (FileNotFoundException fne) {

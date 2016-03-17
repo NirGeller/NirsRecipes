@@ -352,13 +352,11 @@
                                     <h3> A little bit about the meal: </h3>
                                 </div> 
                             </div>
-                        
                             <div id="ingredientsContainer">
                               <div id="ingredientsHeader" class="recipeHeaders"> 
                                   <h3>you will need These: </h3>
                               </div>
                               <div id="ingredients" class="recipeText">
-                                  chicken, flower, honey, sugar, salt, pepper, potatoes, chicken, flower, honey, sugar, salt, pepper, potatoes, chicken, flower, honey, sugar, salt, pepper, potatoes
                               </div>
                             </div>
                             
@@ -367,7 +365,7 @@
                             </div>
                         </div>
                         <div class="modal-footer  adminContent" id="previewFooter">
-                          <button type="button" class="btn btn-danger" id="deleteImage" >delete</button>
+                          <button type="button" class="btn btn-danger" id="deleteRecipe" >delete</button>
                         </div>
                     </div>
                   </div>
@@ -381,7 +379,7 @@
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                           <h2 class="modal-title" id="addRecipeTitle">This Is Where It All Began</h2>
                         </div>
-                        <form   method="post" action="saveRecipe" enctype="multipart/form-data" onsubmit="return true">
+                        <form   method="post" action="saveRecipe" enctype="multipart/form-data" onsubmit="return checkRecipeForm()">
                             <div class="modal-body center " id="recipeDataContainer">
                                 <!-- recipes image -->
                                 <div class="col-sm-4 allingLeft inputLabel" >
@@ -422,6 +420,14 @@
                                 <div class="col-sm-7 allingLeft recipeInput" >
                                     <input class="form-control" type="text" id="servingsInput"  name="servings" placeholder="number of servings" />
                                 </div> 
+                                
+                                <!-- ingredients -->
+                                <div class="col-sm-4 allingLeft inputLabel" >
+                                    <label class="control-label" for="ingredientsInput">ingredients </label>
+                                </div>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <textarea class="form-control" id="ingredientsInput" maxlength="300" rows="8" cols="10" name="ingredients" placeholder="enter ingredients that will be need for making this meal"></textarea>
+                                </div>
                                 
                                 <!-- recipes steps -->
                                 <div class="col-sm-4 allingLeft inputLabel" >

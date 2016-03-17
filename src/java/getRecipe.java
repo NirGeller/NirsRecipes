@@ -51,7 +51,7 @@ public class getRecipe extends HttpServlet {
                 ResultSet rs = stmt.executeQuery();
                 String data = "";
                 if(rs.next())
-                    out.println(rs.getString("id") + '|' + rs.getString("title") + '|' + rs.getString("src") + '|' + rs.getString("description") + '|' + rs.getString("ETA") + '|' + rs.getString("servings") + '|' + rs.getString("steps"));
+                    out.println(rs.getString("id") + '|' + rs.getString("title") + '|' + rs.getString("src") + '|' + rs.getString("description") + '|' + rs.getString("ETA") + '|' + rs.getString("servings") + '|' + rs.getString("ingredients") + '|' + rs.getString("steps"));
                 else
                     out.println("error: couldnt find recipe");
                 

@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 generateRecipes();
-
 ////generata recipes
 //=============================================
 //=============================================
 function generateRecipes()
 {
+    $("#recipesGrid").html("");
     $.ajax({
         type:"get",
         async: false,
@@ -36,24 +35,26 @@ function generateRecipes()
 //=============================================
 //=============================================
 $(".pop").on("click",function() {
+    
     $.ajax({
         type:"get",
         async: false,
         url:"getRecipe",
         data: {id:$(this).attr("id")},
         success: function(recipe){
-            //recipeData goes [id, title, src, desc, ETA, servings, steps]
+            //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps]
             var recipeData = recipe.split("|");
             
             $("#recipeTitle").html(recipeData[1]);
             $("#recipeLogo").attr('src',recipeData[2]);
-            $("#descriptionHeader").append(recipeData[3]);
-            
-            var steps = recipeData[6].split(",");
+            $("#descriptionHeader").html(recipeData[3]);
+            $("#descriptionHeader").append("<br /><br /><span class='glyphicon glyphicon-time'></span>  " + recipeData[4] + "  <br/>   <span class='glyphicon glyphicon-cutlery'></span>  " + recipeData[5] + " servings!");
+            $("#ingredients").html(recipeData[6]);
+            var steps = recipeData[7].split(",");
             for(var i = 0; i < steps.length; i++)
             {
                 var step = "<div class='recipeText recipeHeaders'> <h3> step number " + (i + 1) + ": </h3> " + steps[i] + "</div>";
-                $("#stepsContainer").append(step);
+                $("#stepsContainer").html(step);
             }
             
         },
@@ -65,9 +66,7 @@ $(".pop").on("click",function() {
     
 });
 
-$("#addRecipePop").on("click",function() {
-    $("#addRecipemodal").modal("show");
-});
+
 
 ////Add Recipe
 //=============================================
