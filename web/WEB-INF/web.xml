@@ -32,6 +32,22 @@
         <servlet-name>checkAdmin</servlet-name>
         <servlet-class>checkAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>recipeExists</servlet-name>
+        <servlet-class>recipeExists</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveRecipe</servlet-name>
+        <servlet-class>saveRecipe</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getRecipes</servlet-name>
+        <servlet-class>getRecipes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getRecipe</servlet-name>
+        <servlet-class>getRecipe</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Registration</url-pattern>
@@ -63,6 +79,22 @@
     <servlet-mapping>
         <servlet-name>checkAdmin</servlet-name>
         <url-pattern>/checkAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>recipeExists</servlet-name>
+        <url-pattern>/recipeExists</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveRecipe</servlet-name>
+        <url-pattern>/saveRecipe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getRecipes</servlet-name>
+        <url-pattern>/getRecipes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getRecipe</servlet-name>
+        <url-pattern>/getRecipe</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -46,6 +46,11 @@ and open the template in the editor.
 
 /*Add recipeModal
 -------------------------------------- */
+#recipeDataContainer
+{
+    overflow:auto;
+}
+
 #addRecipeTitle{
     color:#843534;
     font-style:italic;
@@ -54,4 +59,21 @@ and open the template in the editor.
 
 #recipeDataContainer{
     min-height: 300px;
+}
+
+#recipeDataContainer textarea{
+    resize:none;
+    
+}
+
+.recipeInput{
+    margin-bottom: 2%;
+}
+
+.inputLabel{
+    padding:1%;
+}
+
+#recipeInputError{
+    margin-bottom: 3%;
 }

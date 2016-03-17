@@ -311,7 +311,7 @@
                 </div>
                 <hr>
                 <div class="gridBody">
-                    <ul class="grid">
+                    <ul class="grid" id="recipesGrid">
                         <li class="pop">
                             <h3> Oven Cooked Prime Meat </h3>
                             <hr>
@@ -340,18 +340,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                          <h2 class="modal-title" id="recipeTitle">Oven Cooked Prime Meat</h2>
+                          <h2 class="modal-title" id="recipeTitle"></h2>
                         </div>
                         <div class="modal-body center ">
                             <div id="recipeImageContainer">
-                              <img src="Images/SlideImage1.jpg" >
+                              <img id="recipeLogo" src="">
                             </div>
                             
                             <div id="mealDescription">
                                 <div id="descriptionHeader" class="recipeText recipeHeaders">
-                                    <h3> A little bit about the meal, </h3>
-                                    this is meal is meant to be for lunch, its about 6 servings of great cooked chicken with potatoes to top it all.
-                                    some text some text some text some text some text
+                                    <h3> A little bit about the meal: </h3>
                                 </div> 
                             </div>
                         
@@ -365,26 +363,11 @@
                             </div>
                             
                             <div id="stepsContainer">
-                                <div id="firstStep" class="recipeText recipeHeaders">
-                                    <h3> firstly: </h3>
-                                    you need to set the oven on 200 celcious
-                                </div>
-                                <div id="secondStep" class="recipeText recipeHeaders">
-                                    <h3> After that, <br> </h3>
-                                    you need to set the oven on 200 celcious
-                                </div>
-                                <div id="thirdStep" class="recipeText recipeHeaders">
-                                    <h3>  After that, <br> </h3>
-                                    you need to set the oven on 200 celcious
-                                </div>
-                                <div id="fourthStep" class="recipeText recipeHeaders">
-                                    <h3>  After that, <br> </h3>
-                                    you need to set the oven on 200 celcious
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="modal-footer  adminContent" id="previewFooter">
-                          <button type="button" class="btn btn-danger admin1" id="deleteImage" >delete</button>
+                          <button type="button" class="btn btn-danger" id="deleteImage" >delete</button>
                         </div>
                     </div>
                   </div>
@@ -398,55 +381,74 @@
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                           <h2 class="modal-title" id="addRecipeTitle">This Is Where It All Began</h2>
                         </div>
-                        <div class="modal-body center " id="recipeDataContainer">
-                            <form id="recipeData">
+                        <form   method="post" action="saveRecipe" enctype="multipart/form-data" onsubmit="return true">
+                            <div class="modal-body center " id="recipeDataContainer">
                                 <!-- recipes image -->
-                                <div class="col-sm-4 allingLeft" >
+                                <div class="col-sm-4 allingLeft inputLabel" >
                                 <label class="control-label" for="name">Select recipes image </label>
                                 </div>
-                                <div class="col-sm-7">
-                                    <input  type="file" id="file" name="file"/>
+                                <div class="col-sm-7 recipeInput">
+                                    <input  type="file" id="recipeImage" name="recipeImage"/>
                                 </div> 
-
-                                </br>
-                                </br>
                                 
                                 <!-- recipes title -->
-                                <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="recipeTitleInput"> recipes title </label>
+                                <div class="col-sm-4 allingLeft inputLabel" >
+                                    <label class="control-label" for="recipeTitleInput"> Recipes title </label>
                                 </div>
-                                <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="text" id="recipeTitleInput" maxlength="45" name="recipeTitleInput" placeholder="i'm a title"/>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <input class="form-control" type="text" id="recipeTitleInput" maxlength="45" name="title" placeholder="i'm a title"/>
                                 </div> 
-                                
-                                </br>
-                                </br>
                                 
                                 <!-- recipes description -->
-                                <div class="col-sm-4 allingLeft" >
+                                <div class="col-sm-4 allingLeft inputLabel" >
                                     <label class="control-label" for="recipeDescriptionInput">Description </label>
                                 </div>
-                                <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="text" id="recipeDescriptionInput" maxlength="45" name="recipeDescriptionInput" placeholder="i'm a description"/>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <textarea class="form-control" id="recipeDescriptionInput" maxlength="300" rows="5"  name="description" placeholder="enter recipe description here"></textarea>
                                 </div>
-                                
-                                </br>
-                                </br>
                                 
                                 <!-- estamated time -->
-                                <div class="col-sm-4 allingLeft" >
-                                    <label class="control-label" for="estematedTimeInput">estemated cooking time </label>
+                                <div class="col-sm-4 allingLeft inputLabel" >
+                                    <label class="control-label" for="estimatedTimeInput">Estimated cooking time </label>
                                 </div>
-                                <div class="col-sm-7 allingLeft" >
-                                    <input class="form-control" type="time" id="estematedTimeInput"  name="estematedTimeInput" placeholder="ETA in Hours:minues"/>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <input class="form-control" type="text" id="estimatedTimeInput"  name="estimatedTime" placeholder="ETA in Hours:minues" />
                                 </div> 
                                 
+                                <!-- servings -->
+                                <div class="col-sm-4 allingLeft inputLabel" >
+                                    <label class="control-label" for="servingsInput">Number of servings </label>
+                                </div>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <input class="form-control" type="text" id="servingsInput"  name="servings" placeholder="number of servings" />
+                                </div> 
+                                
+                                <!-- recipes steps -->
+                                <div class="col-sm-4 allingLeft inputLabel" >
+                                    <label class="control-label" for="recipeStepsnInput">Steps </label>
+                                </div>
+                                <div class="col-sm-7 allingLeft recipeInput" >
+                                    <textarea class="form-control" id="recipeStepsnInput" maxlength="300" rows="8" cols="15" name="steps" placeholder="enter steps for making the meal here, please minimize the number of steps and each step should me in a seperate line!"></textarea>
+                                </div>
+                                
                                 <input type="hidden" name="Dir" value="Recipes"/>
-                            </form>
-                        </div>
-                        <div class="modal-footer" id="previewFooter">
-                            <button type="button" class="btn btn-info admin1" id="addRecipe" >Add Me</button>
-                        </div>
+                                
+                                <br/>
+                                
+                                
+                            </div>
+                            <div class="modal-footer" id="previewFooter">
+                                <!--error go here-->
+                                <div id="recipeInputError">
+                        
+                                </div>
+                                
+                                <input type="submit" class="btn btn-info btn-primary"  value="Add Me" />
+                                <input type="submit" class="btn btn-danger" value="Reset" />
+                                
+                            </div>
+                        </form>
+                        
                     </div>
                   </div>
                 </div>

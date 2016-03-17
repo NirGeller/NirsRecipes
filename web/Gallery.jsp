@@ -343,7 +343,7 @@
                     <img src="" id="imagepreview" >
                   </div>
                   <div class="modal-footer  adminContent" id="previewFooter">
-                    <button type="button" class="btn btn-danger admin1" id="deleteImage" >delete</button>
+                    <button type="button" class="btn btn-danger" id="deleteImage" >delete</button>
                   </div>
                 </div>
               </div>

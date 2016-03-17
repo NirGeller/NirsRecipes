@@ -118,7 +118,7 @@ function checkPhoto()
     if($("#file").val() == "")
     {
         var $errorMsg = $("<div class='alert alert-danger' id='noUploadAlert'> please select a file </div>");
-        $('#noUpload').append($errorMsg);
+        $('#noUpload').html($errorMsg);
         setTimeout(function () {
             //$errorMsg.remove();
             $errorMsg.slideUp(500, function () {
@@ -133,7 +133,7 @@ function checkPhoto()
     if(imageType != "jpg")
     {
         var $errorMsg = $("<div class='alert alert-danger' id='noUploadAlert'> please select a jpg photo </div>");
-        $('#noUpload').append($errorMsg);
+        $('#noUpload').html($errorMsg);
         setTimeout(function () {
             //$errorMsg.remove();
             $errorMsg.slideUp(500, function () {
@@ -154,7 +154,7 @@ function checkPhoto()
             if(data.contains("error"))
             {
               var $errorMsg = $("<div class='alert alert-danger' id='ImageExists'> photo with that name already exists </div>");
-              $('#noUpload').append($errorMsg);
+              $('#noUpload').html($errorMsg);
               setTimeout(function () {
                   //$errorMsg.remove();
                   $errorMsg.slideUp(500, function () {
