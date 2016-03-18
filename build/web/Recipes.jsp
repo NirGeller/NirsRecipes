@@ -312,21 +312,6 @@
                 <hr>
                 <div class="gridBody">
                     <ul class="grid" id="recipesGrid">
-                        <li class="pop">
-                            <h3> Oven Cooked Prime Meat </h3>
-                            <hr>
-                            <img src="Images/SlideImage1.jpg" alt="recipe image"/>
-                        </li>
-                        <li>
-                            <h3> Potatoes in the oven </h3>
-                            <hr>
-                            <img src="Images/SlideImage3.jpg" alt="recipe image"/>
-                        </li>
-                        <li>
-                            <h3> Its Pizza Time </h3>
-                            <hr>
-                            <img src="Images/SlideImage2.jpg" alt="recipe image"/>
-                        </li>
                         
                     </ul><!--end recipes -->
                     <br>
@@ -438,7 +423,7 @@
                                 </div>
                                 
                                 <input type="hidden" name="Dir" value="Recipes"/>
-                                
+                                <input type="hidden" id="userNameInput" name="username" value=""/>
                                 <br/>
                                 
                                 

@@ -4,7 +4,7 @@
 
 //check if logged in:
 //holds 0 if no one is logged in or the name of the user
-var username;
+var username="";
 var admin;
 //check at the loadup of the page if someone is logged in
 

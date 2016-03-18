@@ -47,14 +47,14 @@ $(".pop").on("click",function() {
             
             $("#recipeTitle").html(recipeData[1]);
             $("#recipeLogo").attr('src',recipeData[2]);
-            $("#descriptionHeader").html(recipeData[3]);
-            $("#descriptionHeader").append("<br /><br /><span class='glyphicon glyphicon-time'></span>  " + recipeData[4] + "  <br/>   <span class='glyphicon glyphicon-cutlery'></span>  " + recipeData[5] + " servings!");
+            $("#descriptionHeader").append(recipeData[3]);
+            $("#descriptionHeader").append("<br /><br /> Cooking Time " + recipeData[4] + " <span class='glyphicon glyphicon-time'>  </span>    " + recipeData[5] + " servings!     <span class='glyphicon glyphicon-cutlery'></span> ");
             $("#ingredients").html(recipeData[6]);
             var steps = recipeData[7].split(",");
             for(var i = 0; i < steps.length; i++)
             {
                 var step = "<div class='recipeText recipeHeaders'> <h3> step number " + (i + 1) + ": </h3> " + steps[i] + "</div>";
-                $("#stepsContainer").html(step);
+                $("#stepsContainer").append(step);
             }
             
         },
@@ -71,6 +71,11 @@ $(".pop").on("click",function() {
 ////Add Recipe
 //=============================================
 //=============================================
+
+//add recipe pop up event
+$("#addRecipePop").click(function(){
+   $("#addRecipemodal").modal('show'); 
+});
 
 //check form input
 function checkRecipeForm()
@@ -191,6 +196,8 @@ function checkRecipeForm()
     if(!checkIllegalCharacters(steps))
         return false;
     
+    //set username input
+    //$("#userNameInput").attr('value',)
     return true;
 }
 
