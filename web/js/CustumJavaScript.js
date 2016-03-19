@@ -4,7 +4,7 @@
 
 //check if logged in:
 //holds 0 if no one is logged in or the name of the user
-var username="";
+username="";
 var admin;
 //check at the loadup of the page if someone is logged in
 
@@ -213,34 +213,6 @@ function AJAXContact(e){
     });
 }
 
-////autofill contact form
-//function autoFillContact()
-//{
-//    alert("hey");
-//    //check if logged in
-//    if(username == 0)
-//        return;
-//    else
-//    {
-//        $.ajax({
-//            method:"post",
-//            url:"getUserInfo",
-//            data:{mail:username},
-//            success: function(data){
-//                var info = data.split(",");
-//                $("#contactEmail").val(username);
-//                $("#contactName").val(info[0]);
-//                $("#contactLastName").val(info[1]);
-//            },
-//            error: function(var1, error)
-//            {
-//                alert(error);
-//            }
-//
-//        });
-//    }
-//}
-
 function autoFillContact()
 {
     //check if logged in
@@ -295,7 +267,7 @@ function getUserInfo()
 function updateNavBar(username)
 {
     //set the signup link
-    $("#profileLink").html('<span class="glyphicon glyphicon-user"></span> <b> ' + username + '</b>');
+    $("#profileLink").html('<span class="glyphicon glyphicon-user"></span> <b>' + username + '</b>');
     $("#profileLink").attr("href", "Profile.jsp");
     $("#profileLink").removeAttr("data-toggle");
     $("#profileLink").removeAttr("data-target");

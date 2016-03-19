@@ -4,23 +4,20 @@
  * and open the template in the editor.
  */
 
-import ServletHelpers.connectToDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import ServletHelpers.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 /**
  *
- * @author gelle
+ * @author Nir
  */
-public class getRecipe extends HttpServlet {
+public class deleteRecipe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +32,13 @@ public class getRecipe extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("id");
+            /* TODO output your page here. You may use following sample code. */
+            String src = request.getParameter("src");
+            
+            //delete image
+            fileHandler.deleteFile(src);
+            
+            //update database
             try{
                 //connect to database
                 Connection con = connectToDatabase.createConnection();
@@ -45,17 +48,12 @@ public class getRecipe extends HttpServlet {
                     return;
                 }
 
-                //try to login
-                PreparedStatement stmt = con.prepareStatement("select * from recipes where id=?");
-                stmt.setString(1, id);
-                ResultSet rs = stmt.executeQuery();
-                String data = "";
-                if(rs.next())
-                    out.print(rs.getString("id") + '|' + rs.getString("title") + '|' + rs.getString("src") + '|' + rs.getString("description") + '|' + rs.getString("ETA") + '|' + rs.getString("servings") + '|' + rs.getString("ingredients") + '|' + rs.getString("steps") + '|' + rs.getString("username"));
-                else
-                    out.println("error: couldnt find recipe");
                 
-            } catch(SQLException e){out.println("error: " + e.getLocalizedMessage());} 
+                PreparedStatement stmt = con.prepareStatement("delete from recipes where src= ?");
+                stmt.setString(1, src);
+                stmt.ex
+                out.println("done");
+            } catch(Exception e){out.println("error: sql error");}
         }
     }
 

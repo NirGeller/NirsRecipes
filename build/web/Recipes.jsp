@@ -22,7 +22,6 @@
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/grid.css" rel="stylesheet">
         <link href="css/recipes.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
   </head>
     <body>
         
@@ -349,7 +348,7 @@
                                 
                             </div>
                         </div>
-                        <div class="modal-footer  adminContent" id="previewFooter">
+                        <div class="modal-footer specificUserContent" id="previewFooter">
                           <button type="button" class="btn btn-danger" id="deleteRecipe" >delete</button>
                         </div>
                     </div>
@@ -468,7 +467,7 @@
         <script src="js/jquery.cookie.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.prettyPhoto.js"></script>
-        <script src="js/CustumJavaScript.js"></script>
         <script src="js/recipesJs.js"></script>
+        <script src="js/CustumJavaScript.js"></script>
     </body>
 </html>

@@ -18,7 +18,7 @@ function generateRecipes()
             var recipes = raw.split(";");
             for(var i = 0; i < recipes.length -1; i++)
             {
-                //recipeData goes [id, title, src, desc, ETA, servings, steps]
+                //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps, username]
                 var recipeData = recipes[i].split("|");
                 var element = "<li id='" + recipeData[0] + "' class='pop'> <h3>" + recipeData[1] + "</h3><hr><img src='" + recipeData[2] + "' alt='recipeImage' />";
                 $("#recipesGrid").append(element);
@@ -34,17 +34,21 @@ function generateRecipes()
 ////Modal JS
 //=============================================
 //=============================================
+
+//display recipe
 $(".pop").on("click",function() {
-    
+    var username = $("#profileLink").html().split("<b>")[1].split("</b>")[0].split("\n")[0];
+    var owner = false;
     $.ajax({
         type:"get",
         async: false,
         url:"getRecipe",
         data: {id:$(this).attr("id")},
         success: function(recipe){
-            //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps]
+            //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps, username]
             var recipeData = recipe.split("|");
-            
+            if(recipeData[8] == username)
+                owner = true;
             $("#recipeTitle").html(recipeData[1]);
             $("#recipeLogo").attr('src',recipeData[2]);
             $("#descriptionHeader").append(recipeData[3]);
@@ -58,10 +62,18 @@ $(".pop").on("click",function() {
             }
             
         },
+        
+            
         error: function(var1, error){
             alert(error);
         }
     });
+    
+    if(owner)
+        $(".specificUserContent").css("display","block");
+    else
+        $(".specificUserContent").css("display","none")
+            
     $("#recipemodal").modal("show");
     
 });
@@ -74,7 +86,9 @@ $(".pop").on("click",function() {
 
 //add recipe pop up event
 $("#addRecipePop").click(function(){
-   $("#addRecipemodal").modal('show'); 
+    var username = $("#profileLink").html().split("<b>")[1].split("</b>")[0].split("\n")[0];
+    $("#userNameInput").val(username);
+    $("#addRecipemodal").modal('show'); 
 });
 
 //check form input
@@ -214,4 +228,11 @@ function checkIllegalCharacters(data)
 //reset error on modal close
 $("#addRecipemodal").on('hidden.bs.modal', function(){
     $('#recipeInputError').html("");
+});
+
+////delete Recipe
+//=============================================
+//=============================================
+$("#deleteRecipe").on('click', function(){
+   alert($("#recipeLogo").attr('src')); 
 });

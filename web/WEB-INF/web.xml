@@ -48,6 +48,10 @@
         <servlet-name>getRecipe</servlet-name>
         <servlet-class>getRecipe</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteRecipe</servlet-name>
+        <servlet-class>deleteRecipe</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Registration</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>getRecipe</servlet-name>
         <url-pattern>/getRecipe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteRecipe</servlet-name>
+        <url-pattern>/deleteRecipe</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

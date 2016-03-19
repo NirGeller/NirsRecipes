@@ -90,6 +90,7 @@ public class saveRecipe extends HttpServlet {
             String servings = request.getParameter("servings");
             String ingredients = request.getParameter("ingredients");
             String Dir = request.getParameter("Dir");
+            String username = request.getParameter("username");
             
             //set step
             String[] tempSteps = request.getParameter("steps").split("\n");
@@ -129,7 +130,7 @@ public class saveRecipe extends HttpServlet {
                 }
                 
                 //insert into database
-                PreparedStatement stmt = con.prepareStatement("insert into recipes(title, src, description, ETA, servings, ingredients, steps) values (?,?,?,?,?,?,?)");
+                PreparedStatement stmt = con.prepareStatement("insert into recipes(title, src, description, ETA, servings, ingredients, steps, username) values (?,?,?,?,?,?,?,?)");
                 stmt.setString(1, title);
                 stmt.setString(2, src);
                 stmt.setString(3, description);
@@ -137,11 +138,12 @@ public class saveRecipe extends HttpServlet {
                 stmt.setString(5, servings);
                 stmt.setString(6, ingredients);
                 stmt.setString(7, steps);
+                stmt.setString(8, username);
                 stmt.executeUpdate();
-                    
+                response.sendRedirect(request.getHeader("referer"));
                 
                     
-                } catch(SQLException e){writer.print("sql error");} 
+                } catch(SQLException e){writer.print("sql error: " + e.getMessage());} 
                 try{Thread.sleep(3000);} catch(Exception e){}
                 
                 writer.println("database updated");
