@@ -96,7 +96,7 @@ public class saveRecipe extends HttpServlet {
             String[] tempSteps = request.getParameter("steps").split("\n");
             String steps = "";
             for(int i = 0; i < tempSteps.length - 1; i++)
-                steps+= tempSteps[i].substring(0, tempSteps[i].length() - 1) + ",";
+                steps+= tempSteps[i].substring(0, tempSteps[i].length() - 1) + "&&";
             steps +=tempSteps[tempSteps.length -1];
             // gets absolute path of the web application
             String path = getServletContext().getRealPath("Images") + "\\" + Dir;
@@ -109,6 +109,7 @@ public class saveRecipe extends HttpServlet {
             final String fileName = pathModifier.getFileName(filePart);
             
             try {
+                writer.println(path);
                 if(ServletHelpers.fileHandler.insertFile(filePart, filePartBuild, fileName, path, pathBuild))
                     writer.println("file was successfully inserted :)");
                 else
@@ -140,7 +141,6 @@ public class saveRecipe extends HttpServlet {
                 stmt.setString(7, steps);
                 stmt.setString(8, username);
                 stmt.executeUpdate();
-                response.sendRedirect(request.getHeader("referer"));
                 
                     
                 } catch(SQLException e){writer.print("sql error: " + e.getMessage());} 

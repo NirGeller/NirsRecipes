@@ -53,8 +53,18 @@ $(".pop").on("click",function() {
             $("#recipeLogo").attr('src',recipeData[2]);
             $("#descriptionHeader").append(recipeData[3]);
             $("#descriptionHeader").append("<br /><br /> Cooking Time " + recipeData[4] + " <span class='glyphicon glyphicon-time'>  </span>    " + recipeData[5] + " servings!     <span class='glyphicon glyphicon-cutlery'></span> ");
-            $("#ingredients").html(recipeData[6]);
-            var steps = recipeData[7].split(",");
+            
+            //set ingredients
+            var ingredients = recipeData[6].split(".");
+            for(var i = 0; i <ingredients.length - 1; i++)
+            {
+                var ingredient = "<li> <input class = 'ingredientCheck' type='checkbox' name='terms' />" + ingredients[i] + "</li>";
+                $("#ingredientsList").append(ingredient);
+            }
+            
+            
+            //set steps
+            var steps = recipeData[7].split("&&");
             for(var i = 0; i < steps.length; i++)
             {
                 var step = "<div class='recipeText recipeHeaders'> <h3> step number " + (i + 1) + ": </h3> " + steps[i] + "</div>";
@@ -234,5 +244,16 @@ $("#addRecipemodal").on('hidden.bs.modal', function(){
 //=============================================
 //=============================================
 $("#deleteRecipe").on('click', function(){
-   alert($("#recipeLogo").attr('src')); 
+   var src= $("#recipeLogo").attr('src');
+   alert(src);
+   $.get('deleteRecipe', {src: src}, function(data){
+      if(data.contains("error"))
+      {
+          var $errorMsg = $("<div class='alert alert-danger Alert' > please select a file </div>");
+            $('#mainAlerts').html($errorMsg);
+      }
+      else
+          location.reload();
+   });
+   
 });

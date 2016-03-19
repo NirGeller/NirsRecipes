@@ -339,6 +339,9 @@
                             <div id="ingredientsContainer">
                               <div id="ingredientsHeader" class="recipeHeaders"> 
                                   <h3>you will need These: </h3>
+                                  <ul id="ingredientsList">
+                                      
+                                  </ul>
                               </div>
                               <div id="ingredients" class="recipeText">
                               </div>
@@ -378,7 +381,7 @@
                                     <label class="control-label" for="recipeTitleInput"> Recipes title </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <input class="form-control" type="text" id="recipeTitleInput" maxlength="45" name="title" placeholder="i'm a title"/>
+                                    <input class="form-control" type="text" id="recipeTitleInput" maxlength="80" name="title" placeholder="i'm a title"/>
                                 </div> 
                                 
                                 <!-- recipes description -->
@@ -386,7 +389,7 @@
                                     <label class="control-label" for="recipeDescriptionInput">Description </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <textarea class="form-control" id="recipeDescriptionInput" maxlength="300" rows="5"  name="description" placeholder="enter recipe description here"></textarea>
+                                    <textarea class="form-control" id="recipeDescriptionInput" maxlength="800" rows="5"  name="description" placeholder="enter recipe description here"></textarea>
                                 </div>
                                 
                                 <!-- estamated time -->
@@ -410,7 +413,7 @@
                                     <label class="control-label" for="ingredientsInput">ingredients </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <textarea class="form-control" id="ingredientsInput" maxlength="300" rows="8" cols="10" name="ingredients" placeholder="enter ingredients that will be need for making this meal"></textarea>
+                                    <textarea class="form-control" id="ingredientsInput" maxlength="800" rows="8" cols="10" name="ingredients" placeholder="enter ingredients that will be need for making this meal"></textarea>
                                 </div>
                                 
                                 <!-- recipes steps -->
@@ -418,7 +421,7 @@
                                     <label class="control-label" for="recipeStepsnInput">Steps </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <textarea class="form-control" id="recipeStepsnInput" maxlength="300" rows="8" cols="15" name="steps" placeholder="enter steps for making the meal here, please minimize the number of steps and each step should me in a seperate line!"></textarea>
+                                    <textarea class="form-control" id="recipeStepsnInput" maxlength="1500" rows="8" cols="15" name="steps" placeholder="enter steps for making the meal here, please minimize the number of steps and each step should me in a seperate line!"></textarea>
                                 </div>
                                 
                                 <input type="hidden" name="Dir" value="Recipes"/>

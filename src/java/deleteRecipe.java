@@ -35,6 +35,7 @@ public class deleteRecipe extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String src = request.getParameter("src");
             
+            
             //delete image
             fileHandler.deleteFile(src);
             
@@ -51,8 +52,14 @@ public class deleteRecipe extends HttpServlet {
                 
                 PreparedStatement stmt = con.prepareStatement("delete from recipes where src= ?");
                 stmt.setString(1, src);
-                stmt.ex
-                out.println("done");
+                boolean deleted = ServletHelpers.fileHandler.deleteFile(getServletContext().getRealPath("/" + src));
+                if(!deleted)
+                    out.println("error: couldnt delete Server image" + src);
+                else
+                {
+                    stmt.executeUpdate();
+                    out.println("the recipe was deleted successfully :)");
+                }
             } catch(Exception e){out.println("error: sql error");}
         }
     }
