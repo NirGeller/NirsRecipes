@@ -48,7 +48,7 @@
                                 <li class="active"><a href="Gallery.jsp">Gallery</a></li>
                                 <li><a href="Recipes.jsp">Recipes</a></li>
                                 <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"  onClick="return false;"> Contact Us </a></li>
-
+                                <li><a href="Admin.jsp" class="adminContent">Admin Page</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#' onClick="return false;"> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
@@ -116,7 +116,21 @@
                                             <input type="text" class="form-control" data-toggle="tooltip"  title="please enter a valid lastname" id="lastName" name="lastName" placeholder="Enter last name here">
                                         </div> 
                                     </div>
+                                    
+                                    <!-- scpacing -->
+                                    <br />
+                                    <br />
+                                    <br />
 
+                                    <div id="ageholder">
+                                        <div class="col-sm-4" style="text-align: center">
+                                            <label class="control-label" for="aeg">Age:</label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" data-toggle="tooltip"  title="please enter a valid Age" id="age" name="age" placeholder="Enter Age here">
+                                        </div> 
+                                    </div>
+                                    
                                     <!-- scpacing -->
                                     <br />
                                     <br />

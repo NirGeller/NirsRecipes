@@ -87,7 +87,7 @@ public class saveRecipe extends HttpServlet {
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             String estimatedTime = request.getParameter("estimatedTime");
-            String servings = request.getParameter("servings");
+            int servings = Integer.parseInt(request.getParameter("servings"));
             String ingredients = request.getParameter("ingredients");
             String Dir = request.getParameter("Dir");
             String username = request.getParameter("username");
@@ -136,7 +136,7 @@ public class saveRecipe extends HttpServlet {
                 stmt.setString(2, src);
                 stmt.setString(3, description);
                 stmt.setString(4, estimatedTime);
-                stmt.setString(5, servings);
+                stmt.setInt(5, servings);
                 stmt.setString(6, ingredients);
                 stmt.setString(7, steps);
                 stmt.setString(8, username);
@@ -148,6 +148,7 @@ public class saveRecipe extends HttpServlet {
                 
                 writer.println("database updated");
                 
+                response.sendRedirect(request.getHeader("referer"));
                 
             } catch (FileNotFoundException fne) {
                 writer.println("You either did not specify a file to upload or are "

@@ -47,6 +47,7 @@
                                 <li><a href="Gallery.jsp">Gallery</a></li>
                                 <li class="active"><a href="Recipes.jsp">Recipes</a></li>
                                 <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs"  onClick="return false;"> Contact Us </a></li>
+                                <li><a href="Admin.jsp" class="adminContent">Admin Page</a></li>
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
@@ -116,7 +117,22 @@
                                             <input type="text" class="form-control" data-toggle="tooltip"  title="please enter a valid lastname" id="lastName" name="lastName" placeholder="Enter last name here">
                                         </div> 
                                     </div>
+                                    
+                                    
+                                    <!-- scpacing -->
+                                    <br />
+                                    <br />
+                                    <br />
 
+                                    <div id="ageholder">
+                                        <div class="col-sm-4" style="text-align: center">
+                                            <label class="control-label" for="aeg">Age:</label>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" data-toggle="tooltip"  title="please enter a valid Age" id="age" name="age" placeholder="Enter Age here">
+                                        </div> 
+                                    </div>
+                                    
                                     <!-- scpacing -->
                                     <br />
                                     <br />
@@ -317,7 +333,7 @@
                     <hr>
                     
                 </div>
-                
+               
                 <!-- recipe previewing -->
                 <div class="modal fade" id="recipemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -413,15 +429,15 @@
                                     <label class="control-label" for="ingredientsInput">ingredients </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <textarea class="form-control" id="ingredientsInput" maxlength="800" rows="8" cols="10" name="ingredients" placeholder="enter ingredients that will be need for making this meal"></textarea>
+                                    <textarea class="form-control" id="ingredientsInput" maxlength="800" rows="8" cols="10" name="ingredients" placeholder="enter engredients seperated by a comma, no new lines"></textarea>
                                 </div>
                                 
                                 <!-- recipes steps -->
                                 <div class="col-sm-4 allingLeft inputLabel" >
-                                    <label class="control-label" for="recipeStepsnInput">Steps </label>
+                                    <label class="control-label" for="recipeStepsInput">Steps </label>
                                 </div>
                                 <div class="col-sm-7 allingLeft recipeInput" >
-                                    <textarea class="form-control" id="recipeStepsnInput" maxlength="1500" rows="8" cols="15" name="steps" placeholder="enter steps for making the meal here, please minimize the number of steps and each step should me in a seperate line!"></textarea>
+                                    <textarea class="form-control" id="recipeStepsnInput" maxlength="1500" rows="8" cols="15" name="steps" placeholder="enter steps for making the meal here, please minimize the number of steps and each step should be seperated by an enter!"></textarea>
                                 </div>
                                 
                                 <input type="hidden" name="Dir" value="Recipes"/>

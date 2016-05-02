@@ -5,7 +5,6 @@
 //check if logged in:
 //holds 0 if no one is logged in or the name of the user
 username="";
-var admin;
 //check at the loadup of the page if someone is logged in
 
 //fix the caurasel padding around the navbar
@@ -67,10 +66,16 @@ function checkAdmin()
         data:{"email":username.split('\n')[0]},
         success: function(data)
         {
-            if(data == "1")
+            if(data == "1"){
                 $(".adminContent").css("display","block");
-            else
+                $(".notAdminContent").css("display","none");
+
+            }
+            else{
                 $(".adminContent").css("display","none");
+                $(".notAdminContent").css("display","block");
+
+            }
         },
         error: function(var1,error)
         {
@@ -94,7 +99,7 @@ function AJAXLogin(e)
         $.ajax({
             type: "POST",
             url: url,
-            data: $("#LoginForm").serialize(),
+            data:$("#LoginForm").serialize(),
             success: function (data)
             {
                 var $Msg;
@@ -145,7 +150,6 @@ function AJAXRegister(e) {
 
                 if (data.contains("error:"))
                 {
-                    alert("test")
                     var message = data.split("error:")[1];
                     var $errorMsg = $("<div class='alert alert-danger Alert'> sry, " + message + " </div>");
                     $('#registerAlert').html($errorMsg);
@@ -217,7 +221,9 @@ function autoFillContact()
 {
     //check if logged in
     var info = getUserInfo();
-    $("#contactEmail").val(info[0]);
+    if(info[0] != "no user"){
+        $("#contactEmail").val(info[0]);
+    }
     $("#contactName").val(info[1]);
     $("#contactLastName").val(info[2]);
             
@@ -327,7 +333,6 @@ $('#contactUs').click(function(){
 
 //input checking
 //==============================================
-
 function checkInput(modal)
 {
     //check mail
@@ -335,6 +340,7 @@ function checkInput(modal)
     {
         $(modal + ' #emailholder').addClass("has-error");
         $(modal + ' #email').tooltip("show");
+        $(modal + ' #email').focus();
         return false;
     } else {
         $(modal + ' #emailholder').removeClass("has-error");
@@ -351,6 +357,7 @@ function checkInput(modal)
         {
             $(modal + ' #pwdholder').addClass("has-error");
             $(modal + ' #pwd').tooltip("show");
+            $(modal + ' #pwd').focus();
             return false;
         } else {
             $(modal + ' #pwdholder').removeClass("has-error");
@@ -364,6 +371,7 @@ function checkInput(modal)
     {
         $(modal + ' #nameholder').addClass("has-error");
         $(modal + ' #name').tooltip("show");
+        $(modal + ' #name').focus();
         return false;
     } else {
         $(modal + ' #nameholder').removeClass("has-error");
@@ -375,13 +383,24 @@ function checkInput(modal)
     {
         $(modal + ' #lastnameholder').addClass("has-error");
         $(modal + ' #lastName').tooltip("show");
+        $(modal + ' #lastName').focus();
         return false;
     } else {
         $(modal + ' #lastnameholder').removeClass("has-error");
         $(modal + ' #lastName').tooltip("destroy");
     }
-
-
+    
+    //check age
+    var age = $(modal + ' #age').val();    
+    if(isNaN(age)) {
+        $(modal + ' #ageholder').addClass("has-error");
+        $(modal + ' #age').tooltip("show");
+        $(modal + ' #age').focus();
+        return false;
+    } else {
+        $(modal + ' #ageholder').removeClass("has-error");
+        $(modal + ' #age').tooltip("destroy");
+    }    
 
     //check if modal is for contact
     if (modal === "#contactModal")
@@ -391,6 +410,7 @@ function checkInput(modal)
         {
             $(modal + ' #messageholder').addClass("has-error");
             $(modal + ' #message').tooltip("show");
+            $("#message").focus();
             return false;
         } else {
             $(modal + ' #messageholder').removeClass("has-error");
@@ -405,6 +425,7 @@ function checkInput(modal)
     {
         $(modal + ' #pwdholder').addClass("has-error");
         $(modal + ' #pwd').tooltip("show");
+        $(modal + ' #pwd').focus();
         return false;
     } else {
         $(modal + ' #pwdholder').removeClass("has-error");
@@ -418,6 +439,7 @@ function checkInput(modal)
 
         $(modal + ' #confirmholder').addClass("has-error");
         $(modal + ' #confirmpwd').tooltip("show");
+        $(modal + ' #pwd').focus();
         return false;
     } else {
         $(modal + ' #confirmholder').removeClass("has-error");

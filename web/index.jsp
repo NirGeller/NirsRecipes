@@ -18,7 +18,17 @@
   </head>
 
   <body>
-      
+    <%
+        Integer hitsCount = 
+          (Integer)application.getAttribute("hitCounter");
+        if( hitsCount ==null || hitsCount == 0 )
+           hitsCount = 1;
+        else
+           hitsCount += 1;
+        application.setAttribute("hitCounter", hitsCount);
+        
+        
+     %>
     <!-- NAVigation BAR
     ================================================== -->
     <div  class="navbar-wrapper">
@@ -41,17 +51,16 @@
                             <li><a href="Gallery.jsp">Gallery</a></li>
                             <li><a href="Recipes.jsp">Recipes</a></li>
                             <li><a data-toggle="modal" data-target="#contactModal" href="#" id="contactUs" onClick="return false;"> Contact Us </a></li>
-
+                            <li><a href="Admin.jsp" class="adminContent">Admin Page</a></li>
+                            <li><a href="#"><span> visits: <%= hitsCount %> </span></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a id="profileLink" data-toggle="modal" data-target="#signUpModal" href='#' onClick="return false;"> <span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
-                            <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#' onClick="return false;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a id="logInLink" data-toggle="modal" data-target="#LoginModal" href='#' ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
-        
-
         </div>
     </div>
     
@@ -115,7 +124,21 @@
                                 <br />
                                 <br />
                                 <br />
+                                
+                                <div id="ageholder">
+                                    <div class="col-sm-4" style="text-align: center">
+                                        <label class="control-label" for="aeg">Age:</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" data-toggle="tooltip"  title="please enter a valid Age" id="age" name="age" placeholder="Enter Age here">
+                                    </div> 
+                                </div>
 
+                                <!-- scpacing -->
+                                <br />
+                                <br />
+                                <br />
+                                
                                 <div id="pwdholder">
                                     <div class="col-sm-4" style="text-align: center">
                                         <label class="control-label " for="pwd">Password:</label>
@@ -371,10 +394,10 @@
           <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading">Dinner for Last <span class="text-muted">It'll blow your mind.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <p class="lead">Dinner usually refers to the most significant and important meal of the day, which can be the noon or the evening meal. However, the term "dinner" can have many different meanings depending on the culture; it may mean a meal of any size eaten at any time of day. Historically, it referred to the first meal of the day, eaten around noon, and is still sometimes used for a noontime meal, particularly if it is a large or main meal. The meaning as the evening meal, generally the largest of the day, is becoming standard in many parts of the English-speaking world.</p>
             </div>
             <div class="col-md-5">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                <img class="featurette-image img-responsive center-block" src="Images/amazingFood.jpg" alt="Generic placeholder image">
             </div>
           </div>
 
@@ -382,23 +405,11 @@
 
           <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
-              <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <h2 class="featurette-heading">food is the best. <span class="text-muted">but be careful of what you eat.</span></h2>
+              <p class="lead">Food poisoning is when someone gets sick from eating food or drink that has gone bad or is contaminated. There are two kinds of food poisoning: poisoning by toxic agent or by infectious agent. Food infection is when the food contains bacteria or other microbes which infect the body after it is eaten. Food intoxication is when the food contains toxins, including bacterially produced exotoxins, which can happen even when the microbe that produced the toxin is no longer present or able to cause infection. Even though it is commonly called "food poisoning", most cases are caused by a variety of pathogenic bacteria, viruses, prions or parasites that contaminate food, rather than chemical or natural toxins which are what we usually call poison. According to the Centers for Disease Control and Prevention, about 76 million people in the United States become ill from the food they eat, and about 5,000 of them die every year</p>
             </div>
             <div class="col-md-5 col-md-pull-7">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-            </div>
-          </div>
-
-          <hr class="featurette-divider">
-
-          <div class="row featurette">
-            <div class="col-md-7">
-              <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-            <div class="col-md-5">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+              <img class="featurette-image img-responsive center-block" src="Images/doctor.jpg" alt="Generic placeholder image">
             </div>
           </div>
 

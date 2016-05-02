@@ -36,6 +36,7 @@ public class Registration extends HttpServlet {
             String pwd = password.crypt(request.getParameter("pwd"));
             String name = request.getParameter("name");
             String lastName = request.getParameter("lastName");
+            int age = Integer.parseInt(request.getParameter("age"));
             String rememberMe = request.getParameter("rememberMe");
             boolean setLifeSpan = true;
             if(rememberMe == null)
@@ -62,11 +63,12 @@ public class Registration extends HttpServlet {
                 }
                 
                 //insert into database
-                stmt = con.prepareStatement("insert into members(first_name, last_name, email, pass, regdate) values (?,?,?,?" + ", CURDATE())");
+                stmt = con.prepareStatement("insert into members(first_name, last_name, age, email, pass, regdate) values (?,?,?,?,?" + ", CURDATE())");
                 stmt.setString(1, name);
                 stmt.setString(2, lastName);
-                stmt.setString(3, email);
-                stmt.setString(4, pwd);
+                stmt.setInt(3, age);
+                stmt.setString(4, email);
+                stmt.setString(5, pwd);
                 int i = stmt.executeUpdate();
                 
                 //save to cookie

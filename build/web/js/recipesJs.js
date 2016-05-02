@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-generateRecipes();
+
+
+    generateRecipes();
+
+
 ////generata recipes
 //=============================================
 //=============================================
@@ -20,7 +24,7 @@ function generateRecipes()
             {
                 //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps, username]
                 var recipeData = recipes[i].split("|");
-                var element = "<li id='" + recipeData[0] + "' class='pop'> <h3>" + recipeData[1] + "</h3><hr><img src='" + recipeData[2] + "' alt='recipeImage' />";
+                var element = "<li id='" + recipeData[0] + "'  class='pop' > <h3 >" + recipeData[1] + "</h3><hr><img  src='" + recipeData[2] +  "' /> </li>";
                 $("#recipesGrid").append(element);
             }
 
@@ -37,7 +41,8 @@ function generateRecipes()
 
 //display recipe
 $(".pop").on("click",function() {
-    var username = $("#profileLink").html().split("<b>")[1].split("</b>")[0].split("\n")[0];
+    
+    var loggedIn = ($("#profileLink").html().split("<b>")[1].split("</b>")[0].split("\n")[0]);
     var owner = false;
     $.ajax({
         type:"get",
@@ -45,9 +50,10 @@ $(".pop").on("click",function() {
         url:"getRecipe",
         data: {id:$(this).attr("id")},
         success: function(recipe){
+
             //recipeData goes [id, title, src, desc, ETA, servings, ingredients, steps, username]
             var recipeData = recipe.split("|");
-            if(recipeData[8] == username)
+            if(recipeData[8] == loggedIn)
                 owner = true;
             $("#recipeTitle").html(recipeData[1]);
             $("#recipeLogo").attr('src',recipeData[2]);
@@ -55,7 +61,7 @@ $(".pop").on("click",function() {
             $("#descriptionHeader").append("<br /><br /> Cooking Time " + recipeData[4] + " <span class='glyphicon glyphicon-time'>  </span>    " + recipeData[5] + " servings!     <span class='glyphicon glyphicon-cutlery'></span> ");
             
             //set ingredients
-            var ingredients = recipeData[6].split(".");
+            var ingredients = recipeData[6].split(",");
             for(var i = 0; i <ingredients.length - 1; i++)
             {
                 var ingredient = "<li> <input class = 'ingredientCheck' type='checkbox' name='terms' />" + ingredients[i] + "</li>";
@@ -83,7 +89,7 @@ $(".pop").on("click",function() {
         $(".specificUserContent").css("display","block");
     else
         $(".specificUserContent").css("display","none")
-            
+    
     $("#recipemodal").modal("show");
     
 });

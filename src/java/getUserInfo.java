@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,7 +58,8 @@ public class getUserInfo extends HttpServlet {
                 if(rs.next())
                 {
                     out.println(rs.getString("first_name")+","+rs.getString("last_name"));
-                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userInfo", rs.getString("first_name")+ " " +rs.getString("last_name"));
                 } 
                 
                 
