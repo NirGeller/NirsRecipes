@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/src/java/Registration.java</file>
-            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/src/java/getUserInfo.java</file>
+            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/src/java/MailAPI.java</file>
+            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/src/java/ServletHelpers/connectToDatabase.java</file>
+            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/web/database/cookingSiteDatabase.sql</file>
             <file>file:/D:/programmingProjects/GitHub/NirsRecipes/src/java/AdminQuery.java</file>
             <file>file:/D:/programmingProjects/GitHub/NirsRecipes/web/Admin.jsp</file>
-            <file>file:/D:/programmingProjects/GitHub/NirsRecipes/web/js/adminJS.js</file>
         </group>
     </open-files>
 </project-private>
